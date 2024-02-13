@@ -1,4 +1,9 @@
 /*
+Cypher Davis
+06 - TTT with 2D arrays
+P6
+2-13-24
+
 This project must play Tic-Tac-Toe.
 
 
@@ -26,8 +31,6 @@ For more in the future and more awesomer...
 4) You can make a new class for a game session as well as a single game
 5) You can make a new class for a turn, or a piece, or a screen painter
 */
-
-//Cypher Davis
 
 public class Main {
   public static void main(String[] args) {
