@@ -20,7 +20,7 @@ public class Player{
     private int ties;
 
   //constructors
-    public Player(n,w,l,t){
+    public Player(int n, int w,int l,int t){
         this.name = n;
         this.wins = w;
         this.loses = l;
