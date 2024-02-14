@@ -47,8 +47,45 @@ import java.lang.Integer;
 import java.lang.StringBuilder;
 
 public class Main {
+  public static final int[][] STATE = {
+    {0,0,0},
+    {0,0,0},
+    {0,0,0}
+    
+  };
   public static void main(String[] args) {
-    new Player();
-    System.out.println("TTT - RAN WITHOUT ERRORS");
+    Player one = new Player("Player One", 1);
+    Player two = new Player("Player Two", 2);
+
+    Game game = new Game(one, two, STATE);
+
+    game.printBoard();
+    int[][] board = game.takeTurn(one);
+    board = game.takeTurn(two);
+
+    boolean win = false;
+    boolean pOneWin = false;
+    boolean pTwoWin = false;
+
+    while(win == false){
+      board = game.takeTurn(one);
+      win = game.checkWin(one);
+      if(win){
+        pOneWin = true;
+        break;
+      } 
+      board = game.takeTurn(two);
+      win = game.checkWin(two);
+      if(win){
+        pTwoWin = true;
+      } 
+    }
+
+    if(pOneWin) game.announceWin(one);
+    if(pTwoWin) game.announceWin(two);
+    
+    
+    
+    
   }
 }
