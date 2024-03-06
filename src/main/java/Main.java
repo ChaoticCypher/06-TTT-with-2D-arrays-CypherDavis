@@ -53,39 +53,80 @@ public class Main {
     {0,0,0}
     
   };
+
+  /*public static final int[][] STATE = {
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0}
+
+  };*/
+  
+  public static final int[][] STATE4 = {
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0}
+  };
   public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    
     Player one = new Player("Player One", 1);
     Player two = new Player("Player Two", 2);
 
+   
+    int turns = 0;
+    
     Game game = new Game(one, two, STATE);
-
+    
     game.printBoard();
     int[][] board = game.takeTurn(one);
+    turns++;
     board = game.takeTurn(two);
+    turns++;
 
     boolean win = false;
     boolean pOneWin = false;
     boolean pTwoWin = false;
 
-    while(win == false){
+    while(win == false && turns < (board.length * board[0].length)){
       board = game.takeTurn(one);
+      turns++;
       win = game.checkWin(one);
       if(win){
         pOneWin = true;
         break;
       } 
+      if(turns >= (board.length * board[0].length)){
+        break;
+      }
       board = game.takeTurn(two);
+      turns++;
       win = game.checkWin(two);
       if(win){
         pTwoWin = true;
       } 
     }
 
-    if(pOneWin) game.announceWin(one);
-    if(pTwoWin) game.announceWin(two);
+    game.gameEnd(pOneWin,pTwoWin,turns);
+    
+    
     
     
     
     
   }
 }
+
+
+/* System.out.println("Welcome to tic tac toe");
+System.out.println("Would you like to play on a 4x4 board or a 3x3 board (answer 4 or 3)");
+int choice = scan.nextInt();
+
+if(choice == 3){
+  Game game = new Game(one, two, STATE);
+} else if(choice == 4){
+  Game game = new Game(one, two, STATE4);
+} else{
+  System.exit(1);
+} */

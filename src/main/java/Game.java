@@ -77,21 +77,41 @@ public class Game{
       }
       if(win) return win;
     }
-    
-    //positive diagonal
 
     //negative diagonal
     for(int y = 0; y < board.length; y++){
       win = true;
-      for(int x = 0; x < board[y].length; x++){
-        
+      if(p.getNumber() != board[y][y]){
+        win = false;
+        break;
       }
     }
+    if(win) return win;
+    
+    //positive diagonal
+    for(int x = board.length - 1; x >= 0 ; x--){
+      win = true;
+      for(int y = 0; y < board.length; y++){
+        if(p.getNumber() != board[y][x]){
+          win = false;
+          break;
+        }
+      }
+    }
+
+    
     return win;
   }
 
   public void announceWin(Player p){
     System.out.println(p.getName() + " has won the game!");
+  }
+
+  public void gameEnd(boolean pOneWin, boolean pTwoWin, int totalTurns){
+    if(totalTurns >= (board.length * board[0].length)) System.out.println("Oh no! There's been a draw no one has won.");
+
+    if(pOneWin) announceWin(one);
+    if(pTwoWin) announceWin(two);
   }
   
 }
